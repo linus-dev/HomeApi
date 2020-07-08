@@ -32,10 +32,17 @@ def home():
 
 
 @app.route('/apps/notepad', methods=['GET'])
-def api_all():
+def api_notepad():
     try: 
-        #os.system("shutdown /r /t 3")
         os.startfile("C:/Windows/notepad.exe")
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'fail': e})
+
+@app.route('/reboot', methods=['GET'])
+def api_reboot():
+    try: 
+        os.system("shutdown /r /t 3")
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'fail': e})
